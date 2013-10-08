@@ -1353,7 +1353,7 @@ install_ubuntu_git_post() {
         [ $fname = "master" ] && [ $_INSTALL_MASTER -eq $BS_FALSE ] && continue
         [ $fname = "syndic" ] && [ $_INSTALL_SYNDIC -eq $BS_FALSE ] && continue
 
-        if [ -f /sbin/initctl && initctl list ]; then
+        if [ -f /sbin/initctl ] && [ "$(initctl list 2>/dev/null)x" != "x" ]; then
             _upstart_conf="/etc/init/salt-$fname.conf"
             # We have upstart support
             echodebug "There's upstart support"
